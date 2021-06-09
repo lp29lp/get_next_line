@@ -50,6 +50,8 @@ static int	ft_transfer(char *plus, char **line)
 {
 	int	i;
 	char *tmp;
+
+	i = 0;
 	while (plus[i] != '\n' && plus[i] != '\0')
 		i++;
 	if (plus[i] == '\0')
@@ -67,12 +69,12 @@ static int	ft_transfer(char *plus, char **line)
 
 static int	ft_guide(int index, char *plus, char **line)
 {
-	if (ret < 0)
+	if (index < 0)
 		return (-1);
-	else if (ret == 0 && plus == NULL )
+	else if (index == 0 && plus == NULL )
 		return (0);
 	else
-		return (ft_transfer(plus, index));
+		return (ft_transfer(plus, line));
 }
 
 int	get_next_line(int fd, char **line)
@@ -80,7 +82,6 @@ int	get_next_line(int fd, char **line)
 	int			index;
 	static char	*plus;
 	char		buf[BUFFER_SIZE + 1];
-	char		*tmp;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || line == NULL)
 		return (-1);
