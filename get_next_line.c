@@ -48,6 +48,8 @@ static char	*ft_strjoin(char const *s1, char const *s2)
 
 static int	ft_transfer(char *plus, char **line)
 {
+	int	i;
+	char *tmp;
 	while (plus[i] != '\n' && plus[i] != '\0')
 		i++;
 	if (plus[i] == '\0')
@@ -57,7 +59,7 @@ static int	ft_transfer(char *plus, char **line)
 		return (0);
 	}
 	*line = ft_substr(plus, 0, i);
-	tmp = strdup(plus + i + 1);
+	tmp = ft_strdup(plus + i + 1);
 	free(plus);
 	plus = tmp;
 	return (1);
