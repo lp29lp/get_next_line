@@ -91,11 +91,11 @@ int	get_next_line(int fd, char **line)
 		if (plus == NULL)
 			plus = ft_strdup(buf);
 		else
-			plus = ft_strjoin(plus, buff);
+			plus = ft_strjoin(plus, buf);
 		if (ft_strchr(plus, '\n'))
 			break ;
 		index = read(fd, buf, BUFFER_SIZE) > 0;
 	}
-	free(buff);
+	free(buf);
 	return (ft_guide(index, plus, line));
 }
