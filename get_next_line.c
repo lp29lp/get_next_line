@@ -81,8 +81,11 @@ int	get_next_line(int fd, char **line)
 {
 	int			index;
 	static char	*plus;
-	char		buf[BUFFER_SIZE + 1];
+	char		*buf;
 
+	buf = (char *)malloc(BUFFER_SIZE + 1);
+	if (buf == NULL)
+		return (-1);
 	if (fd < 0 || BUFFER_SIZE <= 0 || line == NULL)
 		return (-1);
 	index = read(fd, buf, BUFFER_SIZE) > 0;
