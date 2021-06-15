@@ -15,11 +15,11 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h>
 
-typedef struct	s_variable
+typedef struct s_variable
 {
-	int			index;
-	static char	*plus;
+	ssize_t		index;
 	char		*buf;
 	char		*tmp;
 }	t_variable;
