@@ -69,7 +69,7 @@ static int	ft_transfer(char *plus, char **line)
 
 static int	ft_guide(int index, char *plus, char **line)
 {
-	if (index < 0)
+	if (index < 0 || BUFFER_SIZE <= 0 || line == NULL)
 		return (-1);
 	else if (index == 0 && plus == NULL )
 		return (0);
@@ -79,27 +79,27 @@ static int	ft_guide(int index, char *plus, char **line)
 
 int	get_next_line(int fd, char **line)
 {
-	int			index;
-	static char	*plus;
-	char		*buf;
+	t_variable	vr;
 
-	buf = (char *)malloc(BUFFER_SIZE + 1);
-	if (buf == NULL)
+	vr.buf = (char *)malloc(BUFFER_SIZE + 1);
+	if (vr.buf == NULL)
 		return (-1);
-	if (fd < 0 || BUFFER_SIZE <= 0 || line == NULL)
-		return (-1);
-	index = read(fd, buf, BUFFER_SIZE) > 0;
-	while (index > 0)
+	vr.index = read(fd, vr.buf, BUFFER_SIZE) > 0;
+	while (vr.index > 0)
 	{
-		buf[index] = '\0';
-		if (plus == NULL)
-			plus = ft_strdup(buf);
+		vr.buf[vr.index] = '\0';
+		if (vr.plus == NULL)
+			vr.plus = ft_strdup(vr.buf);
 		else
-			plus = ft_strjoin(plus, buf);
-		if (ft_strchr(plus, '\n'))
+		{
+			vr.tmp = ft_strjoin(vr.plus, vr.buf);
+			free(vr.plus)
+			vr.plus = vr.tmp;
+		}
+		if (ft_strchr(vr.plus, '\n'))
 			break ;
-		index = read(fd, buf, BUFFER_SIZE) > 0;
+		vr.index = read(fd, vr.buf, BUFFER_SIZE) > 0;
 	}
-	free(buf);
-	return (ft_guide(index, plus, line));
+	free(vr.buf);
+	return (ft_guide(vr.index, vr.plus, vr.line));
 }

@@ -16,6 +16,14 @@
 # include <unistd.h>
 # include <stdlib.h>
 
+typedef struct	s_variable
+{
+	int			index;
+	static char	*plus;
+	char		*buf;
+	char		*tmp;
+}	t_variable;
+
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strdup(const char *s);
 size_t	ft_strlen(const char *s);
