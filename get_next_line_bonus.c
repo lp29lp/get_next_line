@@ -48,8 +48,9 @@ static char	*ft_strjoin(char const *s1, char const *s2)
 
 static int	ft_transfer(char **plus, char **line)
 {
-	int	i;
-	char *tmp;
+	char	*tmp;
+	int		i;
+
 	i = 0;
 	while ((*plus)[i] != '\n' && (*plus)[i] != '\0')
 		i++;
@@ -107,6 +108,5 @@ int	get_next_line(int fd, char **line)
 		vr.index = read(fd, vr.buf, BUFFER_SIZE);
 	}
 	free(vr.buf);
-
 	return (ft_guide(vr.index, &plus[fd], line));
 }
