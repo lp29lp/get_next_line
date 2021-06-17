@@ -16,7 +16,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-
 typedef struct s_variable
 {
 	ssize_t		index;
